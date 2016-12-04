@@ -17,7 +17,6 @@ The script expects the following to be installed:
 
 1. `bash`
 2. `sed`
-3. `zenity` for GTK+ pop-up dialogs
 
 Installation & Usage
 -----
@@ -41,7 +40,7 @@ name to script as an argument:
 ./prepHauBook.sh example-HTML5.zip
 ```
 
-A GTK+ dialog will pop up asking for the book's slug or permalink, its title,
+You will be prompted for the book's slug or permalink, its title,
 and its author(s). It will then deposit the processed HTML and any images into
 a folder named the book's permalink along with `.json` and `.html` files also
 with the name of the book's permalink.

@@ -3,10 +3,10 @@
 # Store arguments passed
 FILE=$1
 
-# Get book info via zenity
-TITLEID=$(zenity --title="Title ID" --text="What is the book's ID? (For example: the-book-title)" --entry)
-TITLE=$(zenity --title="Title" --text="What is the book's title?" --entry)
-AUTHOR=$(zenity --title="Author" --text="Who is the book's author?" --entry)
+# Prompt for book info
+read -p "What is the book's ID? (For example: the-book-title) " TITLEID
+read -p "What is the book's title? " TITLE
+read -p "Who is the book's author? " AUTHOR
 
 # Create folder if it does not already exist
 if [ -d $TITLEID ]; then

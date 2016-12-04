@@ -30,6 +30,11 @@ done
 # Remove template.css file
 rm -f $TITLEID/template.css
 
+# Store chapters in an array so we know how many there are
+chapters=($(ls $TITLEID/*.html | sort))
+elements=${#chapters[*]}
+last=${chapters[$elements-1]}
+
 # Construct JSON file
 echo '{' > $TITLEID.json
 echo '"titleID" : "'$TITLEID'",' >> $TITLEID.json
@@ -37,7 +42,7 @@ echo '"title" : "'$TITLE'",' >> $TITLEID.json
 echo '"author" : "'$AUTHOR'",' >> $TITLEID.json
 echo '"chapters" : [' >> $TITLEID.json
 chapOrder=0
-for chapter in $(ls $TITLEID/*.html | sort)
+for chapter in "${chapters[@]}"
 do
     fileRoot=$(echo $chapter | sed 's:\(.*\)/\(.*\).html:\2:')
     chapTitle=$(grep "<title>.*</title>" $chapter | sed \
@@ -75,7 +80,12 @@ do
         echo '    "chapTitle" : "'$chapTitle'",' >> $TITLEID.json
         echo '    "order" : '$chapOrder',' >> $TITLEID.json
         echo '    "file" : "'$fileRoot'"' >> $TITLEID.json
-        echo '    },' >> $TITLEID.json
+        if [[ $chapter == $last ]]; then
+            echo '    }' >> $TITLEID.json
+            break
+        else
+            echo '    },' >> $TITLEID.json
+        fi
     fi
 
     chapOrder=$((chapOrder+1))
@@ -85,7 +95,7 @@ echo '}' >> $TITLEID.json
 
 # Construct TOC for Website
 echo '<h5 id="toc" style="text-align: center;">Table of Contents</h5>' > $TITLEID.html
-for chapter in $(ls $TITLEID/*.html | sort)
+for chapter in "${chapters[@]}"
 do
     fileRoot=$(echo $chapter | sed 's:\(.*\)/\(.*\).html:\2:')
     chapTitle=$(grep "<title>.*</title>" $chapter | sed \

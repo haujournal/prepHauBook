@@ -88,7 +88,7 @@ The script then searches for any images in the HTML files and adds the
 scale them according to the user's display. It assumes any links to images
 begin like so: `<img src="images`
 
-To construct the JSON file, the script loops through a sorted list of `*.html`
+To construct the JSON file, the script loops through an array of `*.html`
 files. For each file it cleans the title from within the `<title></title>`
 tags, removing any final end-of-line character, and substituting three UNICODE
 encoded characters with their UTF-8 equivalent:

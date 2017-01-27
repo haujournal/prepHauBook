@@ -118,7 +118,7 @@ do
     fi
     echo '[/column]' >> $TITLEID.html
     echo '[column md="4" xclass="text-right"]' >> $TITLEID.html
-    echo '<a href="http://haubooks.org/viewbook/'$TITLEID'/'$fileRoot'">Full Text</a>' >> $TITLEID.html
+    echo '<a href="//haubooks.org/viewbook/'$TITLEID'/'$fileRoot'">Full Text</a>' >> $TITLEID.html
     echo '[/column]' >> $TITLEID.html
     echo '[/row]' >> $TITLEID.html
 done

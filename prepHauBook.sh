@@ -19,12 +19,14 @@ unzip -j -q $FILE -d $TITLEID
 mkdir $TITLEID/images
 mv $TITLEID/*.jpg $TITLEID/images/
 
-# Remove link to stylesheet in HTML files and make images responsive
+# Remove link to stylesheet in HTML files, make images responsive, and correct spacing within ellipses
 for file in $(ls $TITLEID/*.html)
 do 
     sed -i 's:<link rel="stylesheet" type="text/css" href="template.css"/>::g' $file
     sed -i 's:<link href="template.css" type="text/css" rel="stylesheet" />::g' $file
     sed -i 's:<img src="images:<img class="img-responsive center-block" src="images:g' $file
+    sed -i 's/\.\ \.\ \.\ \./.\&nbsp;.\&nbsp;.\&nbsp;./g' $file
+    sed -i 's/\.\ \.\ \./.\&nbsp;.\&nbsp;./g' $file
 done
 
 # Remove template.css file

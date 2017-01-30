@@ -88,6 +88,12 @@ The script then searches for any images in the HTML files and adds the
 scale them according to the user's display. It assumes any links to images
 begin like so: `<img src="images`
 
+The HTML files from the typesetters usually do not have proper spacing in
+between the periods of ellipses (i.e., ellipses are typset as `. . .` with
+regular, breaking spaces between periods). So, the script also searches for
+such ellipses (both three- and four-period ellipses) and puts an `&nbsp;`
+between each period.
+
 To construct the JSON file, the script loops through an array of `*.html`
 files. For each file it cleans the title from within the `<title></title>`
 tags, removing any final end-of-line character, and substituting three UNICODE
